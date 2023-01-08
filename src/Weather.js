@@ -1,6 +1,7 @@
 import React from "react";
 import "./Weather.css";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function Weather() {
   let weatherData = {
@@ -15,18 +16,18 @@ export default function Weather() {
   return (
     <div className="Weather">
       <form id="search-form">
-        <div class="search-engine">
-          <label for="exampleSearch">Select Location</label>
+        <div className="search-engine">
+          <label for="exampleSearch">Select Location </label>
           <input
             type="search"
-            class="search-engine"
+            className="search-engine"
             aria-describedby="searchHelp"
             placeholder="Search Here"
           />
           <button type="submit" label="submit">
             Submit
           </button>
-          <button type="button" class="btn btn-link">
+          <button type="button" className="btn btn-link">
             Current Location
           </button>
         </div>
@@ -70,6 +71,7 @@ export default function Weather() {
         <a href="/" target="_blank">
           Open-source code
         </a>
+        <span> </span>
         by Ellen Brookes
       </span>
       <br />
