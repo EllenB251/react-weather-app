@@ -47,9 +47,9 @@ export default function Weather() {
             </h3>
             <img src={weatherData.imgUrl} alt={weatherData.description} />
             <span>
-              <h4></h4>
+              <h4> </h4>
             </span>
-            <h3 className="col"></h3>
+            <h3 className="col"> </h3>
             <h4 className="col">
               Humidity: <span></span>
               {weatherData.humidity}%
