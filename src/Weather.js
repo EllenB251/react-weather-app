@@ -68,7 +68,10 @@ export default function Weather() {
       <br />
       <div></div>
       <span className="final-link">
-        <a href="/" target="_blank">
+        <a
+          href="https://github.com/EllenB251/react-weather-app"
+          target="_blank"
+        >
           Open-source code
         </a>
         <span> </span>
