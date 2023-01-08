@@ -1,6 +1,6 @@
 import React from "react";
 import "./Weather.css";
-import axios from "axios";
+//import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default function Weather() {
