@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <Weather />
+        <Weather defaultCity="Perth" />
       </div>
-      <span className="final-link">
+      <footer className="final-link">
         <a
           href="https://github.com/EllenB251/react-weather-app"
           target="_blank"
@@ -19,8 +19,16 @@ function App() {
           Open-source code
         </a>
         <span> </span>
-        by Ellen Brookes
-      </span>
+        by Ellen Brookes and is hosted on
+        <span> </span>
+        <a
+          href="https://app.netlify.com/sites/unique-stardust-f0f4b9/overview"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Netlify
+        </a>
+      </footer>
     </div>
   );
 }

@@ -1,68 +1,73 @@
-import React from "react";
-//import axios from "axios";
+import React, { useState } from "react";
+import WeatherInfo from "./WeatherInfo.js";
+import WeatherForecast from "./WeatherForecast";
+import "./Weather.css";
+import axios from "axios";
 
-export default function Weather() {
-  let weatherData = {
-    city: "Perth",
-    temp: "23",
-    date: "Wednesday 21/12/2022",
-    humidity: "50",
-    wind: "10",
-    description: "Cloudy",
-    imgUrl: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
-  };
-  return (
-    <div className="Weather">
-      <form id="search-form">
-        <div className="search-engine">
-          <label for="exampleSearch">Select Location </label>
-          <input
-            type="search"
-            className="search-engine"
-            aria-describedby="searchHelp"
-            placeholder="Search Here"
-          />
-          <button type="submit" label="submit">
-            Submit
-          </button>
-          <button type="button" className="btn btn-link">
-            Current Location
-          </button>
-        </div>
-      </form>
-      <br />
-      <div className="paralellogram">
-        <div className="today">
-          <h1>{weatherData.city}</h1>
-          <div className="row">
-            <h3 className="col-5">{weatherData.date}</h3>
-            <h3 className="col">
-              <strong>
-                <span className="digits"></span>
-                <span className="units"></span>
-              </strong>
-              <span className="units">{weatherData.temp}°C </span>
-            </h3>
-            <img src={weatherData.imgUrl} alt={weatherData.description} />
-            <span>
-              <h4> </h4>
-            </span>
-            <h3 className="col"> </h3>
-            <h4 className="col">
-              Humidity: <span></span>
-              {weatherData.humidity}%
-            </h4>
-            <h4 className="col">
-              Wind: <span></span>
-              {weatherData.wind}km/h
-            </h4>
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
+
+  function handleResponse(response) {
+    setWeatherData({
+      ready: true,
+      coordinates: response.coordinates,
+      temperature: response.temperature.current,
+      humidity: response.data.temperature.humidity,
+      date: new Date(response.time * 1000),
+      description: response.condition.description,
+      icon: response.icon_url.icon,
+      wind: response.temperature.wind,
+      city: response.city,
+    });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
+  function search() {
+    const apiKey = "43478b01t7d462eof280ed97a9c133a7";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query={city}&key={apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  if (weatherData.ready) {
+    return (
+      <div className="Weather">
+        <form onSubmit={handleSubmit}>
+          <div className="search-engine">
+            <label for="exampleSearch">Select Location </label>
+            <span> </span>
+            <input
+              type="search"
+              className="search-engine"
+              aria-describedby="searchHelp"
+              placeholder="Search Here"
+              autoFocus="on"
+              onChange={handleCityChange}
+            />
+            <span> </span>
+            <button type="submit" label="submit">
+              Submit
+            </button>
+            <button type="button" className="btn btn-link">
+              Current Location
+            </button>
           </div>
-        </div>
+        </form>
+        <br />
+        <WeatherInfo data={weatherData} />
+        <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
-      <br />
-      <div className="five-days">
-        <h2>Five Day Forecast</h2>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    search();
+    return "Loading...";
+  }
 }
