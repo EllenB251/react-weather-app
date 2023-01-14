@@ -1,7 +1,5 @@
 import React from "react";
-import "./Weather.css";
 //import axios from "axios";
-import "bootstrap/dist/css/bootstrap.css";
 
 export default function Weather() {
   let weatherData = {
@@ -65,20 +63,6 @@ export default function Weather() {
       <div className="five-days">
         <h2>Five Day Forecast</h2>
       </div>
-      <br />
-      <div></div>
-      <span className="final-link">
-        <a
-          href="https://github.com/EllenB251/react-weather-app"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Open-source code
-        </a>
-        <span> </span>
-        by Ellen Brookes
-      </span>
-      <br />
     </div>
   );
 }

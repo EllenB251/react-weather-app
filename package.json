@@ -10,8 +10,7 @@
     "bootstrap": "^5.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.6.1",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -21,24 +20,9 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "rules": {
-      "no-unused-vars": "off",
-      "no-console": [
-        "warn",
-        {
-          "allow": [
-            "clear",
-            "info",
-            "error",
-            "dir",
-            "trace",
-            "log"
-          ]
-        }
-      ]
-    },
     "extends": [
-      "react-app"
+      "react-app",
+      "react-app/jest"
     ]
   },
   "browserslist": {
